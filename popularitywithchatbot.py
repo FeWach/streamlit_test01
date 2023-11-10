@@ -45,19 +45,19 @@ def run_streamlit_app():
 
         a = top_movies[top_movies["genres"].str.contains(selected_genre)] 
 
-    if not a.empty:
+        if not a.empty:
             st.write("Here are your personal movie recommendations, Enjoy! 🍿")
             for movie_title in a['title']:
                 st.write(movie_title)
-    else:
+        else:
             st.write("No recommendations found now, sorry. 😕")
 
-    continue_chat = st.radio("Do you want another recommendation?", ["Yes", "No"])
+        continue_chat = st.radio("Do you want another recommendation?", ["Yes", "No"])
 
-    if continue_chat == "No":
+        if continue_chat == "No":
             st.write("Thanks for using the recommender! Have a great day! 👋")
             st.stop()
-    else:
+        else:
             st.write("Please type 1, 2, or 3 again. ⭐️")
 
 if __name__ == "__main__":
