@@ -9,29 +9,29 @@ df = pd.read_csv(csv_url) #df ok
 
 def run_streamlit_app():
 
+     # Streamlit app starts from here for the user
+     st.title("Personal Movie Recommender")
+     st.write("Hi! I'm your personal recommender. 😊🎬")
+     
      def calculate_popularity(df):
     
-      ratings_count = df.groupby('movieId')['rating'].count()
+           ratings_count = df.groupby('movieId')['rating'].count()
     
-      average_ratings = df.groupby('movieId')['rating'].mean()
+           average_ratings = df.groupby('movieId')['rating'].mean()
     
-      popularity_score = average_ratings * np.log1p(ratings_count)
+           popularity_score = average_ratings * np.log1p(ratings_count)
     
-      return popularity_score.to_dict()
+           return popularity_score.to_dict()
 
-    def popularity_recommender(df, num_recommendations):
+     def popularity_recommender(df, num_recommendations):
     
-      df['popularity_score'] = df['movieId'].map(calculate_popularity(df))
+           df['popularity_score'] = df['movieId'].map(calculate_popularity(df))
     
-      sorted_movies = df.sort_values(by='popularity_score', ascending=False)
+           sorted_movies = df.sort_values(by='popularity_score', ascending=False)
     
-      recommended_movies = sorted_movies.drop_duplicates(subset='title').head(num_recommendations)
+           recommended_movies = sorted_movies.drop_duplicates(subset='title').head(num_recommendations)
 
-      return recommended_movies[['movieId', 'title', 'genres']]
-
-    # Streamlit app starts from here for the user
-    st.title("Personal Movie Recommender")
-    st.write("Hi! I'm your personal recommender. 😊🎬")
+           return recommended_movies[['movieId', 'title', 'genres']]
     
     genres = ['Comedy', 'Drama', 'Thriller']
     genre_choice = st.text_input("Choose your genre (type 1 for Comedy, 2 for Drama, 3 for Thriller):")
