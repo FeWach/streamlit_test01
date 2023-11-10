@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 
-csv_url = "https://raw.githubusercontent.com/JesHP73/moviereco/85845a1166f211909985e551c8ab860ce58727b5/sample_movies.csv"
+csv_url = "https://raw.githubusercontent.com/FeWach/streamlit_test01/main/sample_movies_2.csv"
 
 
 def calculate_popularity(df):
