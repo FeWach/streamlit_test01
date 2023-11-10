@@ -9,16 +9,7 @@ def run_streamlit_app():
     
     df = pd.read_csv(csv_url) #df ok
 
-    # Streamlit app starts from here for the user
-    st.title("Personal Movie Recommender")
-    st.write("Hi! I'm your personal recommender. 😊🎬")
-    
-    genres = ['Comedy', 'Drama', 'Thriller']
-    genre_choice = st.text_input("Choose your genre (type 1 for Comedy, 2 for Drama, 3 for Thriller):")
-    
-    genre_map = {'1': 'Comedy', '2': 'Drama', '3': 'Thriller'}
-
-    def calculate_popularity(df):
+     def calculate_popularity(df):
     
       ratings_count = df.groupby('movieId')['rating'].count()
     
@@ -37,6 +28,15 @@ def run_streamlit_app():
       recommended_movies = sorted_movies.drop_duplicates(subset='title').head(num_recommendations)
 
       return recommended_movies[['movieId', 'title', 'genres']]
+
+    # Streamlit app starts from here for the user
+    st.title("Personal Movie Recommender")
+    st.write("Hi! I'm your personal recommender. 😊🎬")
+    
+    genres = ['Comedy', 'Drama', 'Thriller']
+    genre_choice = st.text_input("Choose your genre (type 1 for Comedy, 2 for Drama, 3 for Thriller):")
+    
+    genre_map = {'1': 'Comedy', '2': 'Drama', '3': 'Thriller'}
         
     if genre_choice in genre_map:
         selected_genre = genre_map[genre_choice]
@@ -53,6 +53,7 @@ def run_streamlit_app():
             st.write("No recommendations found now, sorry. 😕")
 
     continue_chat = st.radio("Do you want another recommendation?", ["Yes", "No"])
+
     if continue_chat == "No":
             st.write("Thanks for using the recommender! Have a great day! 👋")
             st.stop()
