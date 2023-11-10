@@ -52,7 +52,7 @@ def run_streamlit_app():
     else:
             st.write("No recommendations found now, sorry. 😕")
 
-        continue_chat = st.radio("Do you want another recommendation?", ["Yes", "No"])
+    continue_chat = st.radio("Do you want another recommendation?", ["Yes", "No"])
     if continue_chat == "No":
             st.write("Thanks for using the recommender! Have a great day! 👋")
             st.stop()
