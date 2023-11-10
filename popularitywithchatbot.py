@@ -5,9 +5,9 @@ import numpy as np
 
 csv_url = "https://raw.githubusercontent.com/FeWach/streamlit_test01/main/sample_movies_2.csv"
 
+df = pd.read_csv(csv_url) #df ok
+
 def run_streamlit_app():
-    
-    df = pd.read_csv(csv_url) #df ok
 
      def calculate_popularity(df):
     
